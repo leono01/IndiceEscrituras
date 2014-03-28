@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteEscrituras" language="groovy" pageWidth="612" pageHeight="792" columnWidth="542" leftMargin="42" rightMargin="28" topMargin="28" bottomMargin="28" uuid="5bab7cd3-0edc-4482-864e-5ddd7d4c4831">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="SansSerif" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="SansSerif" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="SansSerif" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="SansSerif" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM ESCRITURA]]>
+	</queryString>
+	<field name="numero_de_escritura" class="java.lang.String"/>
+	<field name="nombre_operacion" class="java.lang.String"/>
+	<field name="volumen" class="java.lang.String"/>
+	<field name="folios" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Timestamp"/>
+	<title>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement style="Detail" x="0" y="0" width="279" height="24" uuid="a0617cea-caa4-426f-b21b-5e5db7585125"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[LIC. MIGUEL ANGEL ANTONIO GUTIÉRREZ YSITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Detail" x="103" y="44" width="321" height="37" uuid="f7759977-ed3f-42e9-89d1-79e7ecf74d23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE INDICE DE ESCRITURAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="24" width="279" height="20" uuid="ab6e675f-fe4a-4b47-b363-6a0c8a9413f9"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Notario Público No.51]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="4" width="111" height="20" uuid="b113dd4d-2172-4ab4-8588-5506d7f17700"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[GUYM470513]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="24" width="111" height="20" uuid="72905f6b-9b29-4c20-aaec-c7e461668f51"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[TENANCINGO, MÉX.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="542" height="15" backcolor="#666666" uuid="5f336556-5188-4192-bb81-283bc031334d"/>
+				<staticText>
+					<reportElement style="Column header" x="223" y="0" width="146" height="15" uuid="79c77b12-fe62-4cf5-bcda-6de2937746d8"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="8"/>
+					</textElement>
+					<text><![CDATA[OPERACIÓN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="369" y="0" width="55" height="15" uuid="0588a362-bd23-4e4e-bdf1-edef41788fc4"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="8"/>
+					</textElement>
+					<text><![CDATA[VOLUMEN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="0" y="0" width="61" height="15" uuid="dbe3abb2-42ab-44d0-9913-f9760820bd2c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="8"/>
+					</textElement>
+					<text><![CDATA[ESCRITURA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="424" y="0" width="53" height="15" uuid="cb543357-5295-4e22-97ad-0b4146856488"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="8"/>
+					</textElement>
+					<text><![CDATA[FOLIOS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="477" y="0" width="65" height="15" uuid="c92371d2-2fe7-48da-9b23-e382b796d814"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="8"/>
+					</textElement>
+					<text><![CDATA[FECHA]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="2" width="542" height="12" uuid="553844cc-3df3-4a7b-8c1d-91017d3603b6"/>
+				<textField>
+					<reportElement style="Detail" x="369" y="0" width="55" height="12" uuid="e6150547-ae24-4dbb-a866-5665da79f206"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{volumen}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="424" y="0" width="53" height="12" uuid="a6a18d57-2d0d-4da5-9ead-ab203246a4e4"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{folios}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="0" y="0" width="61" height="12" uuid="f3642f13-cddc-49ab-86a0-c7beffb357b6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{numero_de_escritura}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="223" y="0" width="146" height="12" uuid="bb15b3c3-d809-4ae9-bdd2-0157e5a3ef91"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nombre_operacion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="477" y="0" width="65" height="12" uuid="75e392da-f835-41af-9e5e-c81d5ff9a75d"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="14" width="539" height="2" uuid="b7c837a3-76c1-435f-b4c8-a6d85c863560"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="100" splitType="Stretch">
+			<textField>
+				<reportElement x="452" y="78" width="27" height="20" uuid="3b0e8958-2424-400d-82cd-c548822a80a5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="479" y="78" width="17" height="20" uuid="ac19506c-05af-461a-9b1c-bbdb347c732b"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[DE]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="496" y="78" width="32" height="20" uuid="99af243c-1849-428e-98e2-19403b8e0775"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="430" y="78" width="22" height="20" uuid="ed8e8c03-2648-4038-a05e-de6a9900b218"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[PÁG.]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
