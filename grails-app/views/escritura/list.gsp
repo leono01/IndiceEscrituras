@@ -17,7 +17,26 @@
 				<li><g:link class="create" action="flujo">Capturar escritura</g:link></li>
 				
 			</ul>
-		</div>                               
+		</div>
+                <div class="well">
+                            <table>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <g:jasperReport name="reporteEscrituras" jasper="reporteEscrituras" format="PDF" description="Guardar reportes (PDF)" action="guardarEscrituras" controller="escritura">
+                                        <g:each in="${escrituraInstanceList}" status="i" var="escrituraInstance">
+                                        <%--<g:hiddenField name='escrituraId' value='${escrituraInstance.id}'/>
+                                        <g:hiddenField name='numeroDeEscritura' value='${escrituraInstance.numeroDeEscritura}'/>--%>
+                                        </g:each>
+                                    </g:jasperReport>    
+                                  </td>
+                                  <td>
+                                    <g:jasperReport name="reporteEscrituras" jasper="reporteEscrituras" format="DOCX" description="Guardar reportes (WORD)" action="guardarEscrituras" controller="escritura"/>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
                 
 		<div id="list-escritura" class="content scaffold-list" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
@@ -30,9 +49,11 @@
 					
 						<g:sortableColumn property="numeroDeEscritura" title="${message(code: 'escritura.numeroDeEscritura.label', default: 'ESCRITURA')}" />
 						
-                                                <g:sortableColumn property="otorgantes" title="OTORGANTES" />
+                                                <%--<g:sortableColumn property="otorgantes" title="OTORGANTES" />--%>
+                                                <th>OTORGANTES</th>
                                                 
-                                                <g:sortableColumn property="beneficiarios" title="BENEFICIARIOS" />
+                                                <%--<g:sortableColumn property="beneficiarios" title="BENEFICIARIOS" />--%>
+                                                <th>BENEFICIARIOS</th>
 					
 						<g:sortableColumn property="nombreOperacion" title="${message(code: 'escritura.nombreOperacion.label', default: 'OPERACIÓN')}" />
 					
@@ -56,7 +77,7 @@
                                                         <g:each var="otorgante" in="${escrituraInstance.otorgantes}" status="o">
                                                           <tr>                                                            
                                                             <td>
-                                                                <label>${otorgante.nombre}</label>
+                                                                <label>${otorgante.nombreOtorgante}</label>
                                                             </td>
                                                           </tr>
                                                         </g:each>
@@ -71,7 +92,7 @@
                                                         <g:each var="beneficiario" in="${escrituraInstance.beneficiarios}" status="o">
                                                           <tr>                                                            
                                                             <td>
-                                                                <label>${beneficiario.nombre}</label>
+                                                                <label>${beneficiario.nombreBeneficiario}</label>
                                                             </td>
                                                           </tr>
                                                         </g:each>
@@ -95,25 +116,7 @@
 			<div class="pagination">
 				<g:paginate total="${escrituraInstanceTotal}" />
 			</div>
-                        <div class="well">
-                            <table>
-                              <tbody>
-                                <tr>
-                                  <td>
-                                    <g:jasperReport name="reporteEscrituras" jasper="reporteEscrituras" format="PDF" description="Guardar reportes (PDF)" action="guardarEscrituras" controller="escritura">
-                                        <g:each in="${escrituraInstanceList}" status="i" var="escrituraInstance">
-                                        <g:hiddenField name='escrituraId' value='${escrituraInstance.id}'/>
-                                        <g:hiddenField name='numeroDeEscritura' value='${escrituraInstance.numeroDeEscritura}'/>
-                                        </g:each>
-                                    </g:jasperReport>    
-                                  </td>
-                                  <td>
-                                    <g:jasperReport name="reporteEscrituras" jasper="reporteEscrituras" format="XLS" description="Guardar reportes (EXCEL)" action="guardarEscrituras" controller="escritura"/>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                        </div>
+                        
 		</div>
 	</body>
 </html>

@@ -38,7 +38,7 @@
 					<g:render template="/escritura/form"/>
 				</fieldset>
                                 <fieldset class="buttons" style="align:right">
-					<g:submitButton name="create" class="save" value="Siguiente" />
+					<g:submitButton name="create" class="save" value="Siguiente" />                                        
 				</fieldset>
 			</g:form>
 		</div>

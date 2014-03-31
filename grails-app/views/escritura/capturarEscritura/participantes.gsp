@@ -48,7 +48,7 @@
                                       <g:each var="otorgante" in="${escrituraInstance.otorgantes}" status="o">
                                         <tr>
                                           <td>
-                                            ${otorgante.nombre}              
+                                            ${otorgante.nombreOtorgante}              
                                           </td>            
                                           <td>
                                         <g:form action="capturarEscritura">            
@@ -90,7 +90,7 @@
                                       <g:each var="beneficiario" in="${escrituraInstance.beneficiarios}" status="o">
                                         <tr>
                                           <td>
-                                            ${beneficiario.nombre}              
+                                            ${beneficiario.nombreBeneficiario}              
                                           </td>            
                                           <td>
                                         <g:form action="capturarEscritura">            
@@ -120,7 +120,8 @@
                                     </table>
 				</fieldset>
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="Crear" />
+                                    <g:submitButton name="atras" class="alert" value="Atras" />
+                                    <g:submitButton name="create" class="save" value="Crear" />                                        
 				</fieldset>
 			</g:form>
 		</div>

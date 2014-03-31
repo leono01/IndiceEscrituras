@@ -111,8 +111,7 @@ class EscrituraController {
     def capturarEscrituraFlow = {
         init {
             action{                
-                flow.escrituraInstance = new Escritura(numeroDeEscritura:"", nombreOperacion:"", volumen:"", folios:"", fecha:"")
-                println "se crea una escritura" +flow.escrituraInstance + "asdf"
+                flow.escrituraInstance = new Escritura(numeroDeEscritura:"", nombreOperacion:"", volumen:"", folios:"", fecha:"")                
             }
             on ("success").to "escritura"
             on(Exception).to "handleError"
@@ -120,19 +119,23 @@ class EscrituraController {
         escritura{                        
             on("create"){                
                 def escritura = new Escritura(params)
-                flow.escrituraInstance = escritura
-                println escritura.id
-                println flow.escrituraInstance
-                escritura.save(flush:true)                
+                flow.escrituraInstance = escritura               
+                escritura.save(flush:true)
             }.to "participantes"            
         }
         
         participantes{
             on("agregarOtorgante"){                
                 def escritura = flow.escrituraInstance                
-                def otorgante = new Otorgante(nombre:params."nombreOtorgante".toString())                
-                otorgante.save(flush:true)                
-                escritura.addToOtorgantes(otorgante)                
+                def otorgante = Otorgante.findByNombreOtorgante(params."nombreOtorgante".toString())
+                if (otorgante){
+                    escritura.addToOtorgantes(otorgante)
+                }else{
+                otorgante = new Otorgante(nombreOtorgante:params."nombreOtorgante".toString(),escrituraId:escritura.id)                
+                otorgante.save(flush:true)
+                escritura.addToOtorgantes(otorgante)
+                }
+                
             }.to "participantes"
             on("eliminarOtorgante"){
                 escrituraService.borrarOtorgante(params.escrituraId as long,params.otorganteId as long)
@@ -140,9 +143,14 @@ class EscrituraController {
             }.to "participantes"
             on("agregarBeneficiario"){                
                 def escritura = flow.escrituraInstance
-                def beneficiario = new Beneficiario(nombre:params."nombreBeneficiario".toString())
-                beneficiario.save(flush:true)
-                escritura.addToBeneficiarios(beneficiario)
+                def beneficiario = Beneficiario.findByNombreBeneficiario(params."nombreBeneficiario".toString())
+                if(beneficiario){                    
+                    escritura.addToBeneficiarios(beneficiario)
+                }else{
+                    beneficiario = new Beneficiario(nombreBeneficiario:params."nombreBeneficiario".toString(),escritura:escritura.id)
+                    beneficiario.save(flush:true)
+                    escritura.addToBeneficiarios(beneficiario)
+                }                                
             }.to "participantes"
             on("eliminarBeneficiario"){
                 escrituraService.borrarBeneficiario(params.escrituraId as long, params.beneficiarioId as long)
@@ -152,6 +160,7 @@ class EscrituraController {
                 escritura.save(flush:true)
                 flash.message="Se ha capturado la escritura " + escritura.numeroDeEscritura
             }.to "escritura"
+            on("atras").to "escritura"
         }
         
         handleError{

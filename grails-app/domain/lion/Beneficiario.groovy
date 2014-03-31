@@ -1,13 +1,15 @@
 package lion
 
 class Beneficiario implements Serializable {
-    String nombre    
+    String nombreBeneficiario
+    
+    static belongsTo = [escritura:Escritura]
     
     static constraints = {
-        nombre unique:true        
+        nombreBeneficiario unique:true        
     }
     
     String toSotring(){
-        "${nombre}"
+        "${nombreBeneficiario}"
     }
 }

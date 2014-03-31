@@ -1,13 +1,15 @@
 package lion
 
 class Otorgante implements Serializable{
-    String nombre        
+    String nombreOtorgante
+    
+    static belongsTo=[escritura:Escritura]
     
     static constraints = {
-        nombre unique:true
+        nombreOtorgante unique:true        
     }
     
     String toSotring(){
-        "${nombre}"
+        "${nombreOtorgante}"
     }
 }
