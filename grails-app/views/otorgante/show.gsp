@@ -23,11 +23,11 @@
 			</g:if>
 			<ol class="property-list otorgante">
 			
-				<g:if test="${otorganteInstance?.nombre}">
+				<g:if test="${otorganteInstance?.nombreOtorgante}">
 				<li class="fieldcontain">
-					<span id="nombre-label" class="property-label"><g:message code="otorgante.nombre.label" default="Nombre" /></span>
+					<span id="nombre-label" class="property-label"><g:message code="otorgante.nombreOtorgante.label" default="Nombre" /></span>
 					
-						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${otorganteInstance}" field="nombre"/></span>
+						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${otorganteInstance}" field="nombreOtorgante"/></span>
 					
 				</li>
 				</g:if>

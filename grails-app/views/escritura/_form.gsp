@@ -12,15 +12,15 @@
 
         <div class="fieldcontain ${hasErrors(bean: escrituraInstance, field: 'numeroDeEscritura', 'error')} ">
           <label for="numeroDeEscritura">
-                  <g:message code="escritura.numeroDeEscritura.label" default="Numero De Escritura" />
+                  <g:message code="escritura.numeroDeEscritura.label" default="Número De Escritura" />
 
           </label>
-          <g:textField name="numeroDeEscritura" value="${escrituraInstance?.numeroDeEscritura}"/>
+          <g:textField  style="with:400%;" name="numeroDeEscritura" value="${escrituraInstance?.numeroDeEscritura}"/>
         </div>
         
         <div class="fieldcontain ${hasErrors(bean: escrituraInstance, field: 'nombreOperacion', 'error')} ">
                 <label for="nombreOperacion">
-                        <g:message code="escritura.nombreOperacion.label" default="Nombre Operacion" />
+                        <g:message code="escritura.nombreOperacion.label" default="Nombre Operación" />
 
                 </label>
                 <g:textField name="nombreOperacion" value="${escrituraInstance?.nombreOperacion}"/>

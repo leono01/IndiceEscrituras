@@ -16,6 +16,10 @@ class EscrituraController {
     def flujo(){        
         redirect action: "capturarEscritura"
     }
+    
+    def cotejo(){        
+        redirect action: "capturarCotejo"
+    }
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -118,9 +122,89 @@ class EscrituraController {
         }
         escritura{                        
             on("create"){                
-                def escritura = new Escritura(params)
-                flow.escrituraInstance = escritura               
+                def verifica = Escritura.findByNumeroDeEscritura(params.numeroDeEscritura as long)                
+                if(!verifica){
+                    def escritura = new Escritura(params)
+                    flow.escrituraInstance = escritura               
+                    escritura.save(flush:true)
+                }else{
+                    verifica.nombreOperacion    = params."nombreOperacion".toString()
+                    verifica.volumen            = params."volumen".toString()
+                    verifica.folios             = params."folios".toString()
+                    verifica.fecha              = params.fecha
+                    flow.escrituraInstance = verifica
+                }
+            }.to "participantes"            
+        }
+        
+        participantes{
+            on("agregarOtorgante"){                
+                def escritura = flow.escrituraInstance                
+                def otorgante = Otorgante.findByNombreOtorgante(params."nombreOtorgante".toString())
+                if (otorgante){
+                    escritura.addToOtorgantes(otorgante)
+                }else{
+                    otorgante = new Otorgante(nombreOtorgante:params."nombreOtorgante".toString(),escrituraId:escritura.id)                    
+                    otorgante.save(flush:true)
+                    escritura.addToOtorgantes(otorgante)
+                    escritura.save(flush:true)
+                }
+                
+            }.to "participantes"
+            on("eliminarOtorgante"){                
+                escrituraService.borrarOtorgante(params.escrituraId as long,params.otorganteId as long)
+                flash.message = "Se ha borrado el otorgante."
+            }.to "participantes"
+            on("agregarBeneficiario"){                
+                def escritura = flow.escrituraInstance
+                def beneficiario = Beneficiario.findByNombreBeneficiario(params."nombreBeneficiario".toString())
+                if(beneficiario){                    
+                    escritura.addToBeneficiarios(beneficiario)
+                }else{
+                    beneficiario = new Beneficiario(nombreBeneficiario:params."nombreBeneficiario".toString(),escritura:escritura.id)                    
+                    beneficiario.save(flush:true)
+                    escritura.addToBeneficiarios(beneficiario)
+                    escritura.save(flush:true)
+                }                                
+            }.to "participantes"
+            on("eliminarBeneficiario"){
+                escrituraService.borrarBeneficiario(params.escrituraId as long, params.beneficiarioId as long)
+            }.to "participantes"
+            on("create"){
+                def escritura = flow.escrituraInstance
                 escritura.save(flush:true)
+                flash.message="Se ha capturado la escritura " + escritura.numeroDeEscritura
+            }.to "escritura"
+            on("atras").to "escritura"
+        }
+        
+        handleError{
+            redirect(action:"index")
+        }
+    }     
+    
+    def capturarCotejoFlow = {
+        init {
+            action{                
+                flow.escrituraInstance = new Escritura(numeroDeEscritura:"", nombreOperacion:"", volumen:"", folios:"", fecha:"")                
+            }
+            on ("success").to "cotejo"
+            on(Exception).to "handleError"
+        }
+        cotejo{                        
+            on("create"){                
+                def verifica = Escritura.findByNumeroDeEscritura(params.numeroDeEscritura as long)                
+                if(!verifica){
+                    def escritura = new Escritura(params)
+                    flow.escrituraInstance = escritura               
+                    escritura.save(flush:true)
+                }else{
+                    verifica.nombreOperacion    = params."nombreOperacion".toString()
+                    verifica.volumen            = params."volumen".toString()
+                    verifica.folios             = params."folios".toString()
+                    verifica.fecha              = params.fecha
+                    flow.escrituraInstance = verifica
+                }
             }.to "participantes"            
         }
         
@@ -134,6 +218,7 @@ class EscrituraController {
                 otorgante = new Otorgante(nombreOtorgante:params."nombreOtorgante".toString(),escrituraId:escritura.id)                
                 otorgante.save(flush:true)
                 escritura.addToOtorgantes(otorgante)
+                println "parece que todo bien"
                 }
                 
             }.to "participantes"
@@ -158,18 +243,21 @@ class EscrituraController {
             on("create"){
                 def escritura = flow.escrituraInstance
                 escritura.save(flush:true)
-                flash.message="Se ha capturado la escritura " + escritura.numeroDeEscritura
-            }.to "escritura"
-            on("atras").to "escritura"
+                flash.message="Se ha capturado el cotejo " + escritura.numeroDeEscritura
+            }.to "cotejo"
+            on("atras").to "cotejo"
         }
         
         handleError{
             redirect(action:"index")
         }
     }
-    def guardarEscrituras={
-        def escritura = Escritura.findAll("from Escritura")        
-        
+    
+    def guardarEscrituras={                
+        chain(controller:'jasper', action:'index', model: [data:null], params:params)
+    }
+    
+    def guardarCotejos={
         chain(controller:'jasper', action:'index', model: [data:null], params:params)
     }
 }

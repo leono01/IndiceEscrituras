@@ -24,11 +24,11 @@
 			</g:if>
 			<ol class="property-list beneficiario">
 			
-				<g:if test="${beneficiarioInstance?.nombre}">
+				<g:if test="${beneficiarioInstance?.nombreBeneficiario}">
 				<li class="fieldcontain">
-					<span id="nombre-label" class="property-label"><g:message code="beneficiario.nombre.label" default="Nombre" /></span>
+					<span id="nombre-label" class="property-label"><g:message code="beneficiario.nombreBeneficiario.label" default="Nombre" /></span>
 					
-						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${beneficiarioInstance}" field="nombre"/></span>
+						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${beneficiarioInstance}" field="nombreBeneficiario"/></span>
 					
 				</li>
 				</g:if>
@@ -37,7 +37,7 @@
 				<li class="fieldcontain">
 					<span id="escritura-label" class="property-label"><g:message code="beneficiario.escritura.label" default="Escritura" /></span>
                                             <g:each var="beneficiario" in="${escrituraInstance.beneficiarios}">
-						<span class="property-value" aria-labelledby="escritura-label"><g:link controller="escritura" action="show" id="${beneficiario.id}">${beneficiario?.nombre encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="escritura-label"><g:link controller="escritura" action="show" id="${beneficiario.id}">${beneficiario?.nombreBeneficiario} encodeAsHTML()}</g:link></span>
                                             </g:each>
 					
 				</li>

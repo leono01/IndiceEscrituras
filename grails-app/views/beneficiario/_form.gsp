@@ -2,12 +2,12 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: beneficiarioInstance, field: 'nombre', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: beneficiarioInstance, field: 'nombreBeneficiario', 'error')} ">
 	<label for="nombre">
-		<g:message code="beneficiario.nombre.label" default="Nombre" />
+		<g:message code="beneficiario.nombreBeneficiario.label" default="Nombre" />
 		
 	</label>
-	<g:textField name="nombre" value="${beneficiarioInstance?.nombre}"/>
+	<g:textField name="nombre" value="${beneficiarioInstance?.nombreBeneficiario}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: beneficiarioInstance, field: 'escritura', 'error')} required">

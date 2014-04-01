@@ -15,6 +15,7 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="create" action="flujo">Capturar escritura</g:link></li>
+				<li><g:link class="create" action="cotejo">Capturar cotejo</g:link></li>
 				
 			</ul>
 		</div>
@@ -23,15 +24,11 @@
                               <tbody>
                                 <tr>
                                   <td>
-                                    <g:jasperReport name="reporteEscrituras" jasper="reporteEscrituras" format="PDF" description="Guardar reportes (PDF)" action="guardarEscrituras" controller="escritura">
-                                        <g:each in="${escrituraInstanceList}" status="i" var="escrituraInstance">
-                                        <%--<g:hiddenField name='escrituraId' value='${escrituraInstance.id}'/>
-                                        <g:hiddenField name='numeroDeEscritura' value='${escrituraInstance.numeroDeEscritura}'/>--%>
-                                        </g:each>
+                                    <g:jasperReport name="reporteEscrituras" jasper="reporteEscrituras" format="PDF" description="Guardar Escrituras (PDF)" action="guardarEscrituras" controller="escritura">
                                     </g:jasperReport>    
                                   </td>
                                   <td>
-                                    <g:jasperReport name="reporteEscrituras" jasper="reporteEscrituras" format="DOCX" description="Guardar reportes (WORD)" action="guardarEscrituras" controller="escritura"/>
+                                    <g:jasperReport name="reporteCotejos" jasper="reporteCotejos" format="PDF" description="Guardar Cotejos (PDF)" action="guardarCotejos" controller="escritura"/>
                                   </td>
                                 </tr>
                               </tbody>

@@ -17,6 +17,7 @@ class EscrituraService {
                       }
         escritura.removeFromOtorgantes(otorganteAEliminar)
         otorganteAEliminar.delete()
+        escritura.save(flush:true)
     }
     
     def borrarBeneficiario(long idEscritura, long idBeneficiario) {        
@@ -30,5 +31,6 @@ class EscrituraService {
                       }
         escritura.removeFromBeneficiarios(beneficiarioAEliminar)
         beneficiarioAEliminar.delete()
+        escritura.save(flush:true)
     }
 }

@@ -10,8 +10,9 @@
 	<queryString language="SQL">
 		<![CDATA[SELECT e.numero_de_escritura, e.nombre_operacion, e.volumen, e.folios, e.fecha,  b.nombre_beneficiario, o.nombre_otorgante
 FROM beneficiario b
-INNER JOIN escritura e ON e.id = b.escritura_id
-INNER JOIN otorgante o ON e.id = o.escritura_id
+RIGHT JOIN escritura e ON e.id = b.escritura_id
+RIGHT JOIN otorgante o ON e.id = o.escritura_id
+WHERE NOT e.nombre_operacion = 'COTEJO' OR e.nombre_operacion = 'RATIFICACIÓN'
 ORDER BY o.nombre_otorgante]]>
 	</queryString>
 	<field name="numero_de_escritura" class="java.lang.String"/>

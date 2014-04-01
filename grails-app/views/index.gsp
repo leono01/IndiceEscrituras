@@ -100,6 +100,12 @@
                                     <g:img dir="images" file="escitura.png" width="32" height="32"/> 
                                     Capturar Escrituras</g:link></li>
                             </ul>
+                            </br>
+                            <ul>		                                
+                                <li><g:link controller="escritura" action="cotejo">
+                                    <g:img dir="images" file="escitura.png" width="32" height="32"/> 
+                                    Capturar Cotejos</g:link></li>
+                            </ul>
 			</div>
 		</div>
 	</body>

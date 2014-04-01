@@ -67,7 +67,7 @@
                                           <g:hiddenField name="escrituraId" value="${escrituraInstance.id}"/>
                                         <tr>
                                           <td>
-                                            <g:textField class="span3" name="nombreOtorgante" value=""/>                                                        
+                                            <g:textField class="span8" name="nombreOtorgante" value=""/>                                                        
                                           </td>
                                           <td>                
                                             <g:submitButton class="btn btn-primary btn-mini" name="agregarOtorgante" value="Agregar" />
@@ -109,7 +109,7 @@
                                           <g:hiddenField name="escrituraId" value="${escrituraInstance.id}"/>
                                         <tr>
                                           <td>
-                                            <g:textField class="span3" name="nombreBeneficiario" value=""/>                                                        
+                                            <g:textField class="span8" name="nombreBeneficiario" value=""/>                                                        
                                           </td>
                                           <td>                
                                             <g:submitButton class="btn btn-primary btn-mini" name="agregarBeneficiario" value="Agregar" />

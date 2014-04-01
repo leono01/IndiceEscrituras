@@ -73,7 +73,7 @@
 					<span id="beneficiarios-label" class="property-label"><g:message code="escritura.beneficiarios.label" default="Beneficiarios" /></span>
 					
 						<g:each in="${escrituraInstance.beneficiarios}" var="b">
-						<span class="property-value" aria-labelledby="beneficiarios-label"><g:link controller="beneficiario" action="show" id="${b.id}">${b?.nombre.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="beneficiarios-label"><g:link controller="beneficiario" action="show" id="${b.id}">${b?.nombreBeneficiario.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
@@ -84,7 +84,7 @@
 					<span id="otorgantes-label" class="property-label"><g:message code="escritura.otorgantes.label" default="Otorgantes" /></span>
 					
 						<g:each in="${escrituraInstance.otorgantes}" var="o">
-						<span class="property-value" aria-labelledby="otorgantes-label"><g:link controller="otorgante" action="show" id="${o.id}">${o?.nombre.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="otorgantes-label"><g:link controller="otorgante" action="show" id="${o.id}">${o?.nombreOtorgante.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
